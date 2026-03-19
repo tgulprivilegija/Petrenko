@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkOS / LifeOS. Встреча с Петренко — 18.03.2026</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Nunito:wght@900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#eef2f9;
+  --glass-bg:rgba(255,255,255,0.72);
+  --glass-border:rgba(255,255,255,0.85);
+  --glass-shadow:rgba(100,120,180,0.08);
+  --text-primary:#1a2138;
+  --text-secondary:#4a5578;
+  --text-muted:#8892ab;
+  --accent:#4f7cff;
+  --accent-light:#e8eeff;
+  --accent-dim:rgba(79,124,255,0.1);
+  --warn:#f5944e;
+  --warn-light:#fff3e8;
+  --success:#2dba8e;
+  --success-light:#e5f8f2;
+  --idea:#a87bff;
+  --idea-light:#f2ecff;
+  --mind:#e85d9c;
+  --mind-light:#fde8f2;
+  --radius:16px;
+  --radius-sm:12px;
+}
+body{
+  font-family:'DM Sans',sans-serif;
+  background-color:var(--bg);
+  background-image:
+    radial-gradient(circle at 15% 20%, rgba(79,124,255,0.12) 0%, transparent 65%),
+    radial-gradient(circle at 85% 80%, rgba(168,123,255,0.10) 0%, transparent 65%);
+  min-height:100vh;
+  color:var(--text-primary);
+}
+.container{
+  max-width:720px;
+  margin:0 auto;
+  padding:16px 12px 48px;
+}
+@media(min-width:640px){.container{max-width:720px;padding:32px 20px 80px;}}
+@media(min-width:1024px){.container{max-width:780px;padding:48px 32px 100px;}}
+
+/* === HEADER === */
+.header{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  box-shadow:0 8px 32px var(--glass-shadow);
+  border-radius:var(--radius);
+  padding:20px;
+  margin-bottom:12px;
+  position:relative;
+  overflow:hidden;
+  animation:fadeSlideIn 0.5s ease both;
+}
+.header::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:4px;
+  background:linear-gradient(90deg,#4f7cff,#a87bff,#e85d9c);
+  border-radius:4px 4px 0 0;
+}
+@media(min-width:640px){.header{padding:28px 28px 24px;}}
+@media(min-width:1024px){.header{padding:32px 36px 28px;}}
+
+/* NLC logo — правильный */
+.nlc-logo-bar{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px;background:rgba(224,229,236,0.6);
+  border-radius:20px;margin-bottom:14px;
+}
+.nlc-tile{
+  background:#eef0f3;border-radius:14px;padding:8px 14px;
+  box-shadow:5px 5px 10px rgba(163,177,198,0.6),-4px -4px 8px rgba(255,255,255,0.9);
+}
+.nlc-tile span{
+  font-family:'Nunito',sans-serif;font-weight:900;font-size:18px;
+  display:block;
+}
+@media(min-width:640px){.nlc-tile span{font-size:22px;} .nlc-tile{padding:10px 18px;}}
+.nlc-next{color:#E91E8C}
+.nlc-level{color:#2196F3}
+.nlc-club{color:#4CAF50}
+.arrow-tile{
+  background:#eef0f3;border-radius:14px;padding:8px 12px;
+  box-shadow:5px 5px 10px rgba(163,177,198,0.6),-4px -4px 8px rgba(255,255,255,0.9);
+  display:flex;align-items:center;justify-content:center;
+}
+
+.header-label{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;font-weight:500;
+  text-transform:uppercase;letter-spacing:2.5px;
+  color:var(--text-muted);margin-bottom:10px;
+}
+h1{
+  font-size:22px;font-weight:700;line-height:1.25;
+  color:var(--text-primary);margin-bottom:10px;
+}
+@media(min-width:640px){h1{font-size:26px;}}
+@media(min-width:1024px){h1{font-size:28px;}}
+.header-summary{
+  font-size:14px;line-height:1.65;color:var(--text-secondary);
+  margin-bottom:16px;
+}
+@media(min-width:640px){.header-summary{font-size:15px;}}
+
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.meta-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--accent-dim);border-radius:8px;
+  padding:5px 10px;font-size:12px;font-weight:500;color:var(--accent);
+}
+.meta-chip svg{width:13px;height:13px;stroke:var(--accent);fill:none;stroke-width:2;flex-shrink:0;}
+
+.participants-toggle{
+  display:flex;align-items:center;gap:8px;
+  background:none;border:none;cursor:pointer;
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;
+  color:var(--text-secondary);padding:6px 0;
+  transition:color 0.2s;
+}
+.participants-toggle:hover{color:var(--accent);}
+.participants-toggle svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;}
+.count{
+  background:var(--accent-dim);color:var(--accent);
+  border-radius:20px;padding:1px 8px;font-size:11px;font-weight:600;
+}
+.participants-body{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.participants-body.open{max-height:400px;}
+.participants-inner{display:flex;flex-wrap:wrap;gap:8px;padding:10px 0 4px;}
+.participant-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.8);border:1px solid var(--glass-border);
+  border-radius:20px;padding:5px 12px;
+  font-size:12px;font-weight:500;color:var(--text-primary);
+}
+.role{color:var(--text-muted);font-weight:400;}
+
+/* === SECTIONS === */
+.section{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  box-shadow:0 4px 20px var(--glass-shadow);
+  border-radius:var(--radius);margin-bottom:8px;overflow:hidden;
+}
+.section-toggle{
+  width:100%;display:flex;align-items:center;gap:12px;
+  background:none;border:none;cursor:pointer;
+  padding:14px 16px;text-align:left;
+  transition:background 0.18s;
+}
+.section-toggle:hover{background:rgba(79,124,255,0.04);}
+@media(min-width:640px){.section-toggle{padding:16px 20px;gap:14px;}}
+
+.section-icon{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.section-icon svg{width:18px;height:18px;fill:none;stroke-width:2;}
+.section-icon.blue{background:var(--accent-dim);}
+.section-icon.blue svg{stroke:var(--accent);}
+.section-icon.pink{background:var(--mind-light);}
+.section-icon.pink svg{stroke:var(--mind);}
+.section-icon.orange{background:var(--warn-light);}
+.section-icon.orange svg{stroke:var(--warn);}
+.section-icon.purple{background:var(--idea-light);}
+.section-icon.purple svg{stroke:var(--idea);}
+.section-icon.green{background:var(--success-light);}
+.section-icon.green svg{stroke:var(--success);}
+
+.section-label{flex:1;min-width:0;}
+.num{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;font-weight:500;color:var(--text-muted);
+  letter-spacing:1px;margin-right:6px;
+}
+.title{font-size:14px;font-weight:600;color:var(--text-primary);margin-right:8px;}
+@media(min-width:640px){.title{font-size:15px;}}
+.brief{font-size:12px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+@media(max-width:479px){.brief{display:none;}}
+
+.chevron{
+  width:18px;height:18px;stroke:var(--text-muted);fill:none;stroke-width:2;
+  flex-shrink:0;transition:transform 0.3s;
+}
+.section-toggle[aria-expanded="true"] .chevron{transform:rotate(180deg);}
+
+.section-body{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.section-body.open{max-height:9000px;}
+.section-body-inner{padding:0 16px 16px;}
+@media(min-width:640px){.section-body-inner{padding:0 20px 20px;}}
+
+.discussion-label{
+  display:block;
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;text-transform:uppercase;letter-spacing:2px;
+  color:var(--text-muted);margin:4px 0 12px;
+}
+
+/* Items */
+.item{
+  border:1px solid rgba(255,255,255,0.6);
+  background:rgba(255,255,255,0.5);
+  border-radius:var(--radius-sm);margin-bottom:8px;overflow:hidden;
+}
+.item-toggle{
+  width:100%;display:flex;align-items:center;gap:10px;
+  background:none;border:none;cursor:pointer;
+  padding:10px 12px;text-align:left;
+  transition:background 0.18s;
+}
+.item-toggle:hover{background:rgba(79,124,255,0.04);}
+.item-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.item-dot.blue{background:var(--accent);}
+.item-dot.pink{background:var(--mind);}
+.item-dot.orange{background:var(--warn);}
+.item-dot.purple{background:var(--idea);}
+.item-dot.green{background:var(--success);}
+.item-summary{flex:1;font-size:13px;font-weight:500;color:var(--text-primary);}
+.item-expand-icon{width:15px;height:15px;stroke:var(--text-muted);fill:none;stroke-width:2;flex-shrink:0;transition:transform 0.25s;}
+.item-toggle[aria-expanded="true"] .item-expand-icon{transform:rotate(180deg);}
+.item-detail{max-height:0;overflow:hidden;transition:max-height 0.35s ease;}
+.item-detail.open{max-height:2000px;}
+.item-detail-inner{padding:8px 12px 12px 30px;}
+.item-detail-inner p{font-size:13px;line-height:1.65;color:var(--text-secondary);margin-bottom:6px;}
+.item-detail-inner p:last-child{margin-bottom:0;}
+.quote{
+  font-style:italic;color:var(--text-muted);
+  border-left:2px solid var(--accent-dim);
+  padding-left:10px;margin-top:8px !important;
+}
+.quote-author{font-weight:500;color:var(--accent);font-style:normal;}
+
+/* === TASKS LIST === */
+.tasks-section{
+  background:var(--glass-bg);
+  border:1px solid var(--glass-border);
+  box-shadow:0 4px 20px var(--glass-shadow);
+  border-radius:var(--radius);margin-bottom:8px;padding:20px;
+}
+@media(min-width:640px){.tasks-section{padding:24px;}}
+.tasks-section-title{
+  display:flex;align-items:center;gap:10px;
+  font-size:15px;font-weight:700;color:var(--text-primary);
+  margin-bottom:20px;
+}
+.tasks-section-title svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:2;}
+
+.owner-group{margin-bottom:20px;}
+.owner-group:last-child{margin-bottom:0;}
+.owner-group-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;
+  margin-bottom:10px;
+}
+.owner-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+
+.task-list-items{list-style:none;padding:0;margin:0;}
+.task-list-items li{
+  display:flex;align-items:baseline;gap:10px;
+  font-size:13px;color:var(--text-secondary);
+  padding:6px 0;
+  border-bottom:1px solid rgba(255,255,255,0.6);
+  line-height:1.55;
+}
+.task-list-items li:last-child{border-bottom:none;}
+.task-list-items li::before{
+  content:'—';color:var(--text-muted);flex-shrink:0;
+}
+.task-li-text{flex:1;}
+.task-li-deadline{font-size:11px;font-weight:500;color:var(--text-muted);white-space:nowrap;flex-shrink:0;}
+
+/* === ANIMATIONS === */
+@keyframes fadeSlideIn{
+  from{opacity:0;transform:translateY(14px);}
+  to{opacity:1;transform:translateY(0);}
+}
+.header{animation:fadeSlideIn 0.5s ease both;}
+.section:nth-child(1){animation:fadeSlideIn 0.5s 0.08s ease both;}
+.section:nth-child(2){animation:fadeSlideIn 0.5s 0.14s ease both;}
+.section:nth-child(3){animation:fadeSlideIn 0.5s 0.20s ease both;}
+.section:nth-child(4){animation:fadeSlideIn 0.5s 0.26s ease both;}
+.section:nth-child(5){animation:fadeSlideIn 0.5s 0.32s ease both;}
+.tasks-section{animation:fadeSlideIn 0.5s 0.38s ease both;}
+</style>
+</head>
+<body>
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="nlc-logo-bar">
+    <div class="nlc-tile"><span class="nlc-next">NEXT</span></div>
+    <div class="nlc-tile"><span class="nlc-level">LEVEL</span></div>
+    <div class="nlc-tile"><span class="nlc-club">CLUB</span></div>
+    <div class="arrow-tile">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <polygon points="3 11 22 2 13 21 11 13 3 11" fill="#FF9800"/>
+      </svg>
+    </div>
+  </div>
+  <div class="header-label">Привилегия · Внешняя встреча</div>
+  <h1>WorkOS / LifeOS. Встреча с Петренко</h1>
+  <div class="header-summary">
+    Александр провёл встречу с Евгением Петренко — технологическим предпринимателем с опытом в YC. Обсудили три направления потенциального сотрудничества: WorkOS / LifeOS, AI Video Production и формат MindBook. Договорились продолжить общение и встретиться лично в Калифорнии в мае.
+  </div>
+  <div class="meta-row">
+    <span class="meta-chip">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      18 марта 2026
+    </span>
+    <span class="meta-chip">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      58 минут
+    </span>
+    <span class="meta-chip">
+      <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+      Google Meet
+    </span>
+  </div>
+
+  <button class="participants-toggle" aria-expanded="false">
+    <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    Участники
+    <span class="count">2</span>
+  </button>
+  <div class="participants-body">
+    <div class="participants-inner">
+      <span class="participant-tag">Александр Погорелый <span class="role">— владелец Привилегии</span></span>
+      <span class="participant-tag">Евгений Петренко <span class="role">— технолог, предприниматель (США)</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 01 -->
+<div class="section">
+  <button class="section-toggle" aria-expanded="false">
+    <div class="section-icon pink">
+      <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+    </div>
+    <div class="section-label">
+      <span class="num">01</span>
+      <span class="title">WorkOS и LifeOS</span>
+      <span class="brief">18 и 15 лет разработки методологии</span>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="section-body">
+    <div class="section-body-inner">
+      <span class="discussion-label">Обсуждение</span>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot pink"></div>
+          <div class="item-summary">WorkOS — операционная система для бизнеса</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>18 лет в разработке. Апробирована примерно на 50–60 компаниях, суммарно 3–4 тысячи пользователей. Бизнесы абсолютно разные — методология подтвердила универсальность. Цель: объединить под одной крышей всё лучшее из CRM, ERP, Project Manager — убрав лишнее.</p>
+            <p>Позиционирование: не новый канбан или скрам, а полноценная операционная система для работы компании, построенная на методологии mind management.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot pink"></div>
+          <div class="item-summary">LifeOS — навигационная система по жизни</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>15 лет в разработке. Синтез мифологии, религии, философии, логики, бизнес-практик, психологии, нейробиологии и когнистики — упакованных в единую систему. Цель: дать человеку буклет на 1–30 страниц, объясняющий что такое жизнь и как в ней ориентироваться. Не директива, а методология — «устроено вот так, действуй как хочешь».</p>
+            <p>Аналогия: бонсай — правила выращивания одинаковые, но каждый растит своё дерево.</p>
+            <p class="quote">«Нет ни одного человека, который ответит на вопрос: что такое жизнь, что такое человек и как ему жить. Нас никто этому не обучает.»<span class="quote-author"> — Александр</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot pink"></div>
+          <div class="item-summary">Mind Management как ядро обоих систем</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Методология, оформленная в научную дисциплину в 1974 году. Рост использования: 2005–2015 — +30°/год, 2015–2022 — +45°, после 2022 — почти вертикальный взлёт. Задействует оба полушария мозга, что даёт прирост к эффективности запоминания ×2–3 по нейробиологическим исследованиям.</p>
+            <p>Проникновение уже везде: Google Docs (содержание), заметки (древовидные папки), NotebookLM (mind map на выходе), project managers.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 02 -->
+<div class="section">
+  <button class="section-toggle" aria-expanded="false">
+    <div class="section-icon orange">
+      <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+    </div>
+    <div class="section-label">
+      <span class="num">02</span>
+      <span class="title">AI Video Production</span>
+      <span class="brief">AI-Hollywood, дашборд, Videopedia</span>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="section-body">
+    <div class="section-body-inner">
+      <span class="discussion-label">Обсуждение</span>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot orange"></div>
+          <div class="item-summary">AI-Hollywood — дашборд для AI-видеопродакшна</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Совместный проект с Владой. Vibe-coded MVP уже показан топовым AI-кре­аторам — реакция: «это космос, когда можно попасть?». Концепция: объединить реальный видеопродакшн, AI-инструменты и опыт режиссёров/монтажёров/операторов в одном интерфейсе.</p>
+            <p>Модель монетизации (3 уровня): дашборд за подписку для прямого использования; SaaS-продукт, конкурирующий с HeyGen и аналогами; платформа для талантливых фрилансеров (80% им, 20% за технологию).</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot orange"></div>
+          <div class="item-summary">Videopedia — 3D-визуализация знаний человечества</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Идея: карта мира в 3D, нулевой уровень — 12 000 лет назад, каждый «этаж» — 50 лет. Пользователь летит по зданию истории, видит прозрачный каркас эпох. Плотное — то, что уже изучил. Применимо к истории, географии, биологии, путешествиям.</p>
+            <p>Связь с AI Video Production: дашборд для создания видео = инструмент для генерации контента Videopedia. Цель: YouTube + Apple Music в одном — с модерацией, только качественный контент.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 03 -->
+<div class="section">
+  <button class="section-toggle" aria-expanded="false">
+    <div class="section-icon purple">
+      <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+    </div>
+    <div class="section-label">
+      <span class="num">03</span>
+      <span class="title">MindBook и социальная сеть знаний</span>
+      <span class="brief">Революция формата после PDF</span>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="section-body">
+    <div class="section-body-inner">
+      <span class="discussion-label">Обсуждение</span>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot purple"></div>
+          <div class="item-summary">MindDoc, MindSheet, MindPDF, MindBook — новые форматы</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Амбиция: создать следующий после PDF революционный формат файлов. MindDoc — протоколы и отчёты; MindSheet — таблицы; MindPDF — презентации; MindBook — книги в интерактивном tree-формате. Сначала в браузере (HTML/SaaS), затем нативно в OS.</p>
+            <p>Преимущество перед Smartbook: читатель получает конспект автоматически, просто свернув уровни. Пометки, выделения, поле заметок — всё внутри книги.</p>
+            <p class="quote">«Я хочу сделать вторую революцию после PDF.»<span class="quote-author"> — Александр</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot purple"></div>
+          <div class="item-summary">Библиотека MindBook + социальная сеть знаний</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Первая библиотека книг в MindBook-формате — лицензированные, с правами. Затем — социальная сеть, где обсуждаются только книги, статьи, выступления. Никаких новостей, политики, мемов — только интеллект.</p>
+            <p>Механика: выделил абзац → прокомментировал → видишь комментарии других читателей в этом же месте. AI-модерация. Монетизация — продажа книг, небольшая подписка или донаты.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 04 -->
+<div class="section">
+  <button class="section-toggle" aria-expanded="false">
+    <div class="section-icon pink">
+      <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    </div>
+    <div class="section-label">
+      <span class="num">04</span>
+      <span class="title">Мегаплатформа</span>
+      <span class="brief">Альтернатива Lovable, Replit, Cursor</span>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="section-body">
+    <div class="section-body-inner">
+      <span class="discussion-label">Обсуждение</span>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot pink"></div>
+          <div class="item-summary">5 элементов платформы, 2 из них — технологические ноу-хау</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Партнёр Александра (нейробиологический подход + графовое мышление) совместно с Александром (mind management методология) разработали конкурентное преимущество из 5 элементов, 2 из которых — технологические ноу-хау. Детали пока не раскрываются.</p>
+            <p>Тезис: Lovable, Replit, Cursor находятся в убыточной гонке с неработающей freemium-моделью. Оцениваются в миллиарды, но не решают системную задачу. Предлагаемая платформа строится на другой стратегии вовлечения и монетизации.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot pink"></div>
+          <div class="item-summary">Децентрализованный AI — альтернатива монополии</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Упомянут проект братьев Либерман (предприниматели, Калифорния) — альтернатива OpenAI/Anthropic через распределённые вычислительные мощности с токенизацией. Цель: LLM-модели, не принадлежащие нескольким корпорациям. Александру близка идея децентрализации AI-инфраструктуры.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 05 -->
+<div class="section">
+  <button class="section-toggle" aria-expanded="false">
+    <div class="section-icon green">
+      <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div class="section-label">
+      <span class="num">05</span>
+      <span class="title">Итоги и договорённости</span>
+      <span class="brief">Совпадение ценностей, встреча в Калифорнии</span>
+    </div>
+    <svg class="chevron" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+  </button>
+  <div class="section-body">
+    <div class="section-body-inner">
+      <span class="discussion-label">Обсуждение</span>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot green"></div>
+          <div class="item-summary">Позиция Евгения</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Евгений отметил схожесть подходов и близость по ценностям: ему интересна оптимизация как философия работы, и он видит в Александре человека с системным мышлением и большим практическим опытом. WorkOS — тема, которая оказалась ему наиболее близкой и понятной.</p>
+            <p>Евгений предпочитает партнёрство, построенное не на формальных презентациях, а на живом взаимодействии — «прыгаем, разбираемся, итерируемся». У него кофаундерский опыт с YC (2011), несколько параллельных проектов, дважды делал pivots. Живёт в Сан-Франциско.</p>
+            <p class="quote">«Мне не нужен от вас структурированный формат — просто понимаем, что можем работать вместе, и идём.»<span class="quote-author"> — Евгений</span></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="item">
+        <button class="item-toggle" aria-expanded="false">
+          <div class="item-dot green"></div>
+          <div class="item-summary">Договорённости</div>
+          <svg class="item-expand-icon" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="item-detail">
+          <div class="item-detail-inner">
+            <p>Продолжить общение в переписке. Александр переезжает в Калифорнию в мае — договорились встретиться лично в Сан-Франциско. До следующей встречи Александр подготовит детальное погружение по одному из направлений — по выбору Евгения.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TASKS -->
+<div class="tasks-section">
+  <div class="tasks-section-title">
+    <svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+    Задачи
+  </div>
+
+  <div class="owner-group">
+    <div class="owner-group-title">
+      <span class="owner-dot" style="background:#e91e8c;box-shadow:0 0 8px #e91e8c"></span>
+      <span style="color:#e91e8c">Александр</span>
+    </div>
+    <ul class="task-list-items">
+      <li>
+        <span class="task-li-text">Подготовить детальное погружение по одному из направлений (WorkOS / LifeOS, AI Video или MindBook) — по выбору Евгения, 30–40 мин</span>
+        <span class="task-li-deadline">🟡 до встречи</span>
+      </li>
+      <li>
+        <span class="task-li-text">Отправить Евгению Deep Research о Mind Management (GPT Pro) — что это, эффект, тренды, перспективы</span>
+        <span class="task-li-deadline">🟡 в переписке</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="owner-group">
+    <div class="owner-group-title">
+      <span class="owner-dot" style="background:#2196f3;box-shadow:0 0 8px #2196f3"></span>
+      <span style="color:#2196f3">Евгений</span>
+    </div>
+    <ul class="task-list-items">
+      <li>
+        <span class="task-li-text">Выбрать направление для следующей встречи — ответить Александру, какое из трёх направлений интереснее всего разобрать детально</span>
+        <span class="task-li-deadline">🟡 в переписке</span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var pToggle = document.querySelector('.participants-toggle');
+  if (pToggle) {
+    pToggle.addEventListener('click', function() {
+      var exp = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!exp));
+      this.nextElementSibling.classList.toggle('open', !exp);
+    });
+  }
+  document.querySelectorAll('.section-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var exp = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!exp));
+      this.nextElementSibling.classList.toggle('open', !exp);
+    });
+  });
+  document.querySelectorAll('.item-toggle').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var exp = this.getAttribute('aria-expanded') === 'true';
+      this.setAttribute('aria-expanded', String(!exp));
+      this.nextElementSibling.classList.toggle('open', !exp);
+    });
+  });
+});
+</script>
+</body>
+</html>
